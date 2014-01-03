@@ -14,13 +14,10 @@ the Image Computing class during our Master degree in Computer Science.
 Building the project
 --------------------
 
-The code requires only QT4 but it uses some gcc not standard
-extensions.
+The code requires only QT4.
 
-It is tested on linux with QT 4.8.6 and g++ 4.8.2.
-It used to work on windows too using an old mingw, to compile it with
-vc++ the code needs some minor modification that I'll plan to do in
-the next future.
+It is tested on linux using QT 4.8.6 and g++ 4.8.2 and on Windows
+using vc++2010 and QT 4.8.5
 
 To make the project move in the `src` directory and execute the
 following commands: 
@@ -29,11 +26,10 @@ following commands:
 $ qmake
 $ make
 $ make install
-
 ```
 
 note that the last command does not really install the program
-(therefore no root privileges are required) but it just copies in the
+(therefore root privileges are not required) but it just copies in the
 `bin` directory the executable and all the files it needs to work. 
 
 Documentation
