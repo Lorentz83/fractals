@@ -1,4 +1,4 @@
-/src/Makefile
+/src/Makefile*
 /src/*.o
 /src/moc_*.cpp
 /src/qrc_*.cpp

@@ -32,6 +32,58 @@ double power(double b,double e){
   return exp(e*log(b));
 }
 
+
+#ifdef _WIN32
+
+long int lround  (double x){
+  return (long) x; //TODO fixme
+}
+
+#endif
+
+template <typename T>
+class dyn_array{
+  T *data;
+public:
+  dyn_array(int size){
+    data = new T[size];
+  }
+  ~dyn_array(){
+    delete[] data;
+  }
+  const T& operator[](int pos) const {
+    return data[pos];
+  }
+  T& operator[](int pos) {
+    return data[pos];
+  }
+};
+
+template <typename T>
+class matrix{
+  int size;
+  dyn_array< dyn_array<T>* > data;
+public:
+  matrix(int dimx, int dimy): size(dimx), data(dimx){
+    for (int i = 0 ; i<dimx ; i++){
+      data[i]=new dyn_array<T>(dimy);
+    }
+  }
+  ~matrix(){
+    for (int i = 0 ; i<size ; i++){
+      delete data[i];
+    }
+  }
+  const dyn_array<T>& operator[](int pos) const {
+    return *data[pos];
+  }
+  dyn_array<T>& operator[](int pos) {
+    return *data[pos];
+  }
+
+};
+
+
 codice::codice(interfaces::input *ii, interfaces::output *oo){
     i=ii;
     o=oo;
@@ -226,7 +278,7 @@ z /\  /
   int dimAdd=(int)ceil(dimy*sqrt(2.0)/4.0);
   proiezione=new image_2d(dimx+dimAdd,dimz+dimAdd);  
   
-  int altezze[dimx][dimy];
+  matrix<int> altezze(dimx,dimy);
   for (int i=0;i<dimx;i++){
     for (int j=0;j<dimy;j++){
       altezze[i][j]=(pixel::maxcolor-base->get_px(i,j).gray_value())*scalini/pixel::maxcolor*altezzaScalino;
