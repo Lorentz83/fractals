@@ -10,6 +10,8 @@ CONFIG += release
 
 # Input
 
+win32:RC_FILE = resource.rc
+
 HEADERS += codice.h finestra.h image.h interfaces.h
 FORMS += finestra.ui
 SOURCES += codice.cpp finestra.cpp image.cpp main.cpp
